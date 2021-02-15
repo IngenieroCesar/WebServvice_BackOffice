@@ -14,6 +14,8 @@ const createUsuarioSchema = {
 };
 
 const updateUsuarioSchema = {
+    _id: joi.string().regex(/^[0-9a-fA-F]{32}$/).required(),
+    _rev: joi.string().regex(/^[0-9a-fA-F]+-[0-9a-fA-F]{32}$/).required(),
     cedula: joi.number().max(9999999999).required(),
     clave: joi.string().max(100).required(),
     nombre: joi.string().max(100).required(),
@@ -24,8 +26,14 @@ const updateUsuarioSchema = {
     sucursal: joi.object().required(),
 };
 
+const deleteUsuarioSchema = {
+    _id: joi.string().regex(/^[0-9a-fA-F]{32}$/).required(),
+    _rev: joi.string().regex(/^[0-9a-fA-F]+-[0-9a-fA-F]{32}$/).required(),
+};
+
 module.exports = {
     usuarioIdSchema,
     createUsuarioSchema,
-    updateUsuarioSchema
+    updateUsuarioSchema,
+    deleteUsuarioSchema
 }

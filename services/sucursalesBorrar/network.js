@@ -16,8 +16,13 @@ require('../../utils/auth/strategies/jwt');
 
 router.post('/', validationHandler(deleteSucursalSchema), async (req, res, next) => {
     const { body: sucursal } = req;
+    let query = {
+        "query" : sucursal,
+        "fields": [
+        ]
+    }
     try {
-        sucursalesBorrarApi.register(sucursal)
+        sucursalesBorrarApi.borrar(query)
             .then((data) => {
                 res.status(200).json(data);
             })

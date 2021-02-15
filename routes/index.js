@@ -11,6 +11,10 @@ const sucursalesBorrar = require('../services/sucursalesBorrar/network');
 const usuariosRegistro = require('../services/usuariosRegistro/network');
 const usuariosActualizar = require('../services/usuariosActualizar/network');
 const usuariosConsulta = require('../services/usuariosConsulta/network');
+const usuariosBorrar = require('../services/usuariosBorrar/network');
+
+const metasActualizar = require('../services/metasActualizar/network');
+const metasBuscar = require('../services/metasBuscar/network');
 
 
 
@@ -29,6 +33,10 @@ const routes = function (app){
   app.use('/usuarios/registrar', usuariosRegistro);
   app.use('/usuarios/modificar', usuariosActualizar);
   app.use('/usuarios/buscar', usuariosConsulta);
+  app.use('/usuarios/borrar', usuariosBorrar);
+  //metas
+  app.use('/metas/modificar', metasActualizar);
+  app.use('/metas/buscar', metasBuscar);
   
 }
 

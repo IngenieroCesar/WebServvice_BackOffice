@@ -44,15 +44,15 @@ router.post('/', async (req, res, next) => {
     
                     //Generate Token
                     const token = jwt.sign(payload, config.authJwtSecret, {
-                        expiresIn: '480m'    
+                        expiresIn: '2m'    
                     });
                     //Send token client
                     return res.status(200).json({ token, user });
                     });
     
                     //Send token Redis
-                    const stringUserData = JSON.stringify(user);
-                    await redisLib.almacenarRedis(idtk, stringUserData);
+                    // const stringUserData = JSON.stringify(user);
+                    // await redisLib.almacenarRedis(idtk, stringUserData);
         
             }
 

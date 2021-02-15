@@ -11,9 +11,9 @@ require('../../utils/auth/strategies/jwt');
 
 router.post('/', passport.authenticate('jwt', { session: false }), async (req, res) => { 
 
-    const solicitudBuscar = await solicitudesBuscarApi.getSolicitudBuscar();
-
-console.log(solicitudBuscar)
+    // const solicitudBuscar = await solicitudesBuscarApi.getSolicitudBuscar();
+    const solicitudBuscar = { data: 'hola'};
+    console.log(solicitudBuscar)
     res.status(200).json(solicitudBuscar.data);
 
 

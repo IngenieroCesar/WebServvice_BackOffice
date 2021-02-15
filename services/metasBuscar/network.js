@@ -1,24 +1,26 @@
 
 const express = require('express');
 const passport = require('passport');
-const UsuariosConsultaService = require('./controller');
+const MetasConsultaService = require('./controller');
 const router = express.Router();
 
-const usuariosConsultaApi = new UsuariosConsultaService();
+const metasConsultaApi = new MetasConsultaService();
 
 //JWT strategy
 require('../../utils/auth/strategies/jwt');
 
-router.post('/', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
     const { body: data } = req;
     let query = {
-        "query" : data,
+        "query" : {
+            "estado": 1
+        },
         "fields": [
         ]
     }
 
     try {
-        usuariosConsultaApi.consulta(query)
+        metasConsultaApi.buscar(query)
             .then((data) => {
                 res.status(200).json(data);
             })
@@ -32,18 +34,3 @@ router.post('/', async (req, res, next) => {
 });
 
 module.exports = router;
-
-/*
-Query example:
-
-{
-    "query" : {
-        "estado": 1
-    },
-    "fields": [
-        "cedula"
-    ],
-    "limit": 1
-}
-
-*/
