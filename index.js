@@ -2,7 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const app = express();
 
-const { config } = require('./config/index');
+const config = require('./config/index');
 // const adapter = require('./lib/redisEvents');
 
 const { 

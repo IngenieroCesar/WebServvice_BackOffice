@@ -6,8 +6,6 @@ const router = express.Router();
 
 const solicitudesBuscarApi = new solicitudesBuscarService()
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
 
 router.post('/', passport.authenticate('jwt', { session: false }), async (req, res) => { 
 

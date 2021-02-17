@@ -1,5 +1,5 @@
 const axiosUtil = require('../../utils/request/axios');
-const { config } = require('../../config');
+const config = require('../../config');
 
 class SucursalesActualizarService {
     constructor() {

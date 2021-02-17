@@ -12,8 +12,6 @@ const {
 } = require('../../utils/schemas/usuarios');
 const validationHandler = require('../../utils/middleware/validationHandler');
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
 
 router.post('/', validationHandler(createUsuarioSchema), async (req, res, next) => {
     const { body: usuario } = req;

@@ -1,6 +1,6 @@
 //This is a global function to request
 const axios = require('axios');
-const { config } = require('../../config');
+const config = require('../../config');
 const exceptions = require('../exceptions');
 
 //Authentication betwen services

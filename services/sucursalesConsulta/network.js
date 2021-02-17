@@ -6,9 +6,6 @@ const router = express.Router();
 
 const sucursalesConsultaApi = new SucursalesConsultaService();
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
-
 router.post('/', async (req, res, next) => {
     const { body: query } = req;
     try {
