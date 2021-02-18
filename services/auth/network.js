@@ -2,7 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const response = require('../../utils/response');
-const exeptions = require('../../utils/exceptions');
 
 const UsuariosConsultaService = require('./controller');
 

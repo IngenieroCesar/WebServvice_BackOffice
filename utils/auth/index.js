@@ -1,27 +1,15 @@
+const { response } = require('express');
 const jwt = require('jsonwebtoken');
 const config = require('../../config');
+const exception = require('../exceptions');
 
 const secret = config.jwt.secret;
 
 
 function sign(data) {
-    return jwt.sign(data, secret);
+    return jwt.sign(data, secret, { expiresIn: '2m' });
 }
 
-function verify(token) {
-    return jwt.verify(token, secret);
-}
-
-const check = {
-    own: function(req, owner){
-        const decoded = decodeHeader(req);
-        console.log(decoded);
-
-        if(decoded.id !== owner){
-            throw new Error('No puedes hacer esto')
-        }
-    },
-}
 
 function getToken(auth) {
     if(!auth){
@@ -37,14 +25,33 @@ function getToken(auth) {
     return token;
 }
 
-function decodeHeader(req){
-    const authorization = req.headers.authorization || '';
-    const token = getToken(authorization);
-    const decoded = verify(token);
+async function check(req){
 
-    req.user = decoded;
+    return new Promise((resolve, reject) => {
+        const authorization = req.headers.authorization || '';
+        const token = getToken(authorization);
+        jwt.verify(token, secret, (err, user) => {
+            // if there has been an error
+            if (err) {
 
-    return decoded;
+                reject({
+                    data: {err: err},
+                    status: exception['02SURO401-S00005'].status,
+                    codigo: exception['02SURO401-S00005'].code,
+                    mensaje: exception['02SURO401-S00005'].message
+                });  
+            }
+            //JWT valido
+            resolve({
+                data: { user: user},
+                status: exception['02SURO200-S00004'].status,
+                codigo: exception['02SURO200-S00004'].code,
+                mensaje: exception['02SURO200-S00004'].message
+            });  
+          });
+    });
+
+
 }
 
 module.exports = {

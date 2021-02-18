@@ -1,13 +1,14 @@
 
 const express = require('express');
-const passport = require('passport');
 const UsuariosConsultaService = require('./controller');
 const router = express.Router();
+const authMiddleware = require('../../utils/middleware/authentication');
+const response = require('../../utils/response');
 
 const usuariosConsultaApi = new UsuariosConsultaService();
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', authMiddleware('update'), async (req, res, next) => {
     const { body: data } = req;
     let query = {
         "query" : data,
@@ -18,10 +19,11 @@ router.post('/', async (req, res, next) => {
     try {
         usuariosConsultaApi.consulta(query)
             .then((data) => {
-                res.status(200).json(data);
+                response.success(req, res, data)
             })
             .catch((error) => {
-                res.status(error.status).json(error.data);
+                console.log(error)
+                response.error(req, res, error)
             });
     } catch (error) {
         next(error);
@@ -30,18 +32,3 @@ router.post('/', async (req, res, next) => {
 });
 
 module.exports = router;
-
-/*
-Query example:
-
-{
-    "query" : {
-        "estado": 1
-    },
-    "fields": [
-        "cedula"
-    ],
-    "limit": 1
-}
-
-*/

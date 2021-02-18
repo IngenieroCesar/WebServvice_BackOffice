@@ -30,10 +30,22 @@ module.exports = {
         'message': "Autorizado."
     },
 
-    '02SURO200-S00005': {
-        'code': '02SURO200-S00005',
-        'status': 200,
+    '02SURO401-S00005': {
+        'code': '02SURO401-S00005',
+        'status': 401,
         'message': "No autorizado."
+    },
+
+    '02USCO400-S00006': {
+        'code': '02USCO400-S00006',
+        'status': 400,
+        'message': "Problema al consultar suarios."
+    },
+
+    '02USCO400-S00007': {
+        'code': '02USCO400-S00007',
+        'status': 400,
+        'message': "Problema al borrar suarios."
     },
 
 

@@ -1,5 +1,3 @@
-const express = require("express");
-const { authenticate } = require("passport");
 const auth = require('../services/auth/network');
 const solicitudesBuscar = require('../services/solicitudesBuscarPendientes/network');
 

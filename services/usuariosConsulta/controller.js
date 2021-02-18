@@ -1,5 +1,7 @@
 const axiosUtil = require('../../utils/request/axios');
+const exeptions = require('../../utils/exceptions');
 const config = require('../../config');
+
 
 class UsuariosConsultaService {
     constructor() {
@@ -13,14 +15,21 @@ class UsuariosConsultaService {
             //get data users from store
             axiosUtil.request(config.urlDao, '/usuarios/buscar', 'post', object, 'read', async ( data, error ) => {
                 if (error === null && data) {
-                    resolve(data)
-                }   else if (error == null) {
-                    //algo
-                    reject(error)
-                    }   else {
-                        //Not auth
-                        reject(error)
-                        }
+                    resolve({
+                        data: data.data,
+                        status: exeptions['02SURO200-S00001'].status,
+                        codigo: exeptions['02SURO200-S00001'].code,
+                        mensaje: exeptions['02SURO200-S00001'].message
+                    });
+                }else {
+                    //Problema al consultar usuarios
+                    reject({
+                        data: {},
+                        status: exeptions['02USCO400-S00006'].status,
+                        codigo: exeptions['02USCO400-S00006'].code,
+                        mensaje: exeptions['02USCO400-S00006'].message
+                    });
+                }
             });
         });
 
