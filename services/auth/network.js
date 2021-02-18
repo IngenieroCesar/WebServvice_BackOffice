@@ -1,17 +1,20 @@
 
 const express = require('express');
-const UsuariosConsultaService = require('./controller');
 const router = express.Router();
-const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
+
+const UsuariosConsultaService = require('./controller');
 
 const usuariosConsultaApi = new UsuariosConsultaService();
 
+const config = require('../../config');
 
-router.post('/', authMiddleware('update'), async (req, res, next) => {
-    const { body: data } = req;
+
+router.post('/', async (req, res, next) => {
+
+    const { body: user } = req;
     let query = {
-        "query" : data,
+        "query" : user,
         "fields": [
         ]
     }
@@ -28,7 +31,7 @@ router.post('/', authMiddleware('update'), async (req, res, next) => {
     } catch (error) {
         next(error);
     }
-   
+
 });
 
 module.exports = router;

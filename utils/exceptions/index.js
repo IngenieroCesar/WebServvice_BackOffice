@@ -1,29 +1,52 @@
 module.exports = {
     //Microservice
+    '02SURO500-S00000': {
+        'code': '02SURO500-S00000',
+        'status': 500,
+        'message': "Se ha presentado un error en el servicio."
+    },
+
     '02SURO200-S00001': {
-    'code': '02SURO200-S00001',
-    'message': "Autenticacion de usuario correcta."
+        'code': '02SURO200-S00001',
+        'status': 200,
+        'message': "Proceso correcto."
     },
 
-    'EBO001': {
-    'code': 'EBO001',
-    'message': "Error al conectarse con capa de almacenamiento."
+    '02SURO200-S00002': {
+        'code': '02SURO401-S00002',
+        'status': 200,
+        'message': "Autenticacion correcta."
     },
 
-    'EBO002': {
-    'code': 'EBO002',
-    'message': "Problema de autenticacion ante capa de almacenamiento."
+    '02SURO401-S00003': {
+        'code': '02SURO401-S00003',
+        'status': 401,
+        'message': "Autenticacion fallida."
     },
 
-    'EBO003': {
-    'code': 'EBO003',
-    'message': "Usuario/Clave incorrecta."
+    '02SURO200-S00004': {
+        'code': '02SURO200-S00004',
+        'status': 200,
+        'message': "Autorizado."
+    },
+
+    '02SURO401-S00005': {
+        'code': '02SURO401-S00005',
+        'status': 401,
+        'message': "No autorizado."
+    },
+
+    '02USCO400-S00006': {
+        'code': '02USCO400-S00006',
+        'status': 400,
+        'message': "Problema al consultar suarios."
+    },
+
+    '02USCO400-S00007': {
+        'code': '02USCO400-S00007',
+        'status': 400,
+        'message': "Problema al borrar suarios."
     },
 
 
-
-    'EBO000': {
-    'code': 'EBO000',
-    'message': "Proceso exitoso."
-    },
 }

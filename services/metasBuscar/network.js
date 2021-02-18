@@ -6,8 +6,6 @@ const router = express.Router();
 
 const metasConsultaApi = new MetasConsultaService();
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
 
 router.get('/', async (req, res, next) => {
     const { body: data } = req;

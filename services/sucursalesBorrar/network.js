@@ -10,10 +10,6 @@ const {
 } = require('../../utils/schemas/sucursales');
 const validationHandler = require('../../utils/middleware/validationHandler');
 
-
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
-
 router.post('/', validationHandler(deleteSucursalSchema), async (req, res, next) => {
     const { body: sucursal } = req;
     let query = {

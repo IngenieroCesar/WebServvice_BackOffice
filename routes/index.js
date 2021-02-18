@@ -1,6 +1,4 @@
-const express = require("express");
-const { authenticate } = require("passport");
-const signIn = require('../services/signIn/network');
+const auth = require('../services/auth/network');
 const solicitudesBuscar = require('../services/solicitudesBuscarPendientes/network');
 //sucursales
 const sucursalesRegistro = require('../services/sucursalesRegistro/network');
@@ -27,19 +25,19 @@ const asesoresBuscar = require('../services/asesoresBuscar/network');
 
 const routes = function (app){
   //Authentication
-  app.use('/auth/sign-in', signIn);
+  app.use('/api/auth/login', auth);
   //Solicitudes
-  app.use('/solicitudes/buscar', solicitudesBuscar);
+  app.use('/api/solicitudes/buscar', solicitudesBuscar);
   //Sucursales
-  app.use('/sucursales/registrar', sucursalesRegistro);
-  app.use('/sucursales/modificar', sucursalesActualziar);
-  app.use('/sucursales/buscar', sucursalesConsulta);
-  app.use('/sucursales/borrar', sucursalesBorrar);
+  app.use('/api/sucursales/registrar', sucursalesRegistro);
+  app.use('/api/sucursales/modificar', sucursalesActualziar);
+  app.use('/api/sucursales/buscar', sucursalesConsulta);
+  app.use('/api/sucursales/borrar', sucursalesBorrar);
   //usuarios
-  app.use('/usuarios/registrar', usuariosRegistro);
-  app.use('/usuarios/modificar', usuariosActualizar);
-  app.use('/usuarios/buscar', usuariosConsulta);
-  app.use('/usuarios/borrar', usuariosBorrar);
+  app.use('/api/usuarios/registrar', usuariosRegistro);
+  app.use('/api/usuarios/modificar', usuariosActualizar);
+  app.use('/api/usuarios/buscar', usuariosConsulta);
+  app.use('/api/usuarios/borrar', usuariosBorrar);
   //metas
   app.use('/metas/modificar', metasActualizar);
   app.use('/metas/buscar', metasBuscar);

@@ -1,5 +1,6 @@
 const axiosUtil = require('../../utils/request/axios');
-const { config } = require('../../config');
+const exeptions = require('../../utils/exceptions');
+const config = require('../../config');
 
 class UsuariosDeleteService {
     constructor() {
@@ -34,14 +35,21 @@ class UsuariosDeleteService {
                 //send request to update:
                 axiosUtil.request(config.urlDao, '/usuarios/modificar', 'post' , response,'write', async ( data, error ) => {
                     if (error === null && data) {
-                        resolve(data)
-                    }   else if (error == null) {
-                        //algo
-                        reject(error)
-                        }   else {
-                            //Not auth
-                            reject(error)
-                            }
+                        resolve({
+                            data: data.data,
+                            status: exeptions['02SURO200-S00001'].status,
+                            codigo: exeptions['02SURO200-S00001'].code,
+                            mensaje: exeptions['02SURO200-S00001'].message
+                        })
+                    }else {
+                        //Problema al consultar usuarios
+                        reject({
+                            data: {},
+                            status: exeptions['02USCO400-S00007'].status,
+                            codigo: exeptions['02USCO400-S00007'].code,
+                            mensaje: exeptions['02USCO400-S00007'].message
+                        });
+                    }
                 });
 
             })

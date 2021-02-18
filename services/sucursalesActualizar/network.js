@@ -11,9 +11,6 @@ const {
 const validationHandler = require('../../utils/middleware/validationHandler');
 
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
-
 router.post('/',validationHandler(updateSucursalSchema) , async (req, res, next) => {
     const { body: sucursal } = req;
     try {

@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const config = {
+module.exports = {
     dev : process.env.NODE_ENV !== 'production',
     port: process.env.PORT || 3000,
     cors: process.env.CORS,
@@ -18,6 +18,7 @@ const config = {
     redisPort: process.env.REDIS_PORT,
     redisCert: process.env.REDIS_CERT,
     redisTtl: process.env.REDIS_TTL,
+    jwt: {
+        secret: process.env.AUTH_JWT_SECRET,
+    }
 };
-
-module.exports = { config }

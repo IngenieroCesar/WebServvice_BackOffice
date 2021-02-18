@@ -1,8 +1,9 @@
 
 const express = require('express');
-const passport = require('passport');
 const UsuariosBorrarService = require('./controller');
 const router = express.Router();
+const authMiddleware = require('../../utils/middleware/authentication');
+const response = require('../../utils/response');
 
 const usuariosBorrarApi = new UsuariosBorrarService();
 const { 
@@ -10,10 +11,8 @@ const {
 } = require('../../utils/schemas/usuarios');
 const validationHandler = require('../../utils/middleware/validationHandler');
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
 
-router.post('/', validationHandler(deleteUsuarioSchema), async (req, res, next) => {
+router.post('/',authMiddleware('update'), validationHandler(deleteUsuarioSchema), async (req, res, next) => {
     const { body: usuario } = req;
 
     let query = {
@@ -26,12 +25,11 @@ router.post('/', validationHandler(deleteUsuarioSchema), async (req, res, next) 
         //Borrar al usuario.
         usuariosBorrarApi.borrar(query)
             .then((data) => {
-                res.status(200).json(data);
+                response.success(req, res, data)
             })
             .catch((error) => {
                 console.log(error)
-                res.status(error.status).json(error.data);
-                // next(error);
+                response.error(req, res, error)
             });
 
     } catch (error) {

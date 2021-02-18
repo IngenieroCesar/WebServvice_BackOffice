@@ -1,8 +1,8 @@
 const express = require('express');
-const passport = require('passport');
 const app = express();
+const cors = require('cors');
 
-const { config } = require('./config/index');
+const config = require('./config/index');
 // const adapter = require('./lib/redisEvents');
 
 const { 
@@ -14,10 +14,9 @@ const {
 const notFoundHandler = require('./utils/middleware/notFoundHandler');
 
 // body parser
+app.use(cors());
 app.use(express.json());
 
-app.use(passport.initialize());
-app.use(passport.session());
 //Api Router
 const router = require('./routes/index');
 router(app);
