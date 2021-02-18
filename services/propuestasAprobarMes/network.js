@@ -6,8 +6,6 @@ const router = express.Router();
 
 const propuestasAprobarMesApi = new PropuestasAprobarMesService();
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
 
 router.post('/', async (req, res, next) => {
     const { body: meta } = req;

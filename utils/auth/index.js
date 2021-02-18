@@ -7,9 +7,8 @@ const secret = config.jwt.secret;
 
 
 function sign(data) {
-    return jwt.sign(data, secret, { expiresIn: '2m' });
+    return jwt.sign(data, secret, { expiresIn: '8h' });
 }
-
 
 function getToken(auth) {
     if(!auth){

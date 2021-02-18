@@ -5,8 +5,6 @@ const router = express.Router();
 
 const empleadosBuscarApi = new EmpleadosBuscarService();
 
-//JWT strategy
-require('../../utils/auth/strategies/jwt');
 
 router.post('/', async (req, res, next) => {
     const { body: meta } = req;

@@ -36,6 +36,7 @@ module.exports = {
         'message': "No autorizado."
     },
 
+    //usuarios consulta
     '02USCO400-S00006': {
         'code': '02USCO400-S00006',
         'status': 400,
