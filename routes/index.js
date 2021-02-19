@@ -1,4 +1,6 @@
-const auth = require('../services/auth/network');
+const express = require("express");
+const { authenticate } = require("passport");
+// const signIn = require('../services/signIn/network');
 const solicitudesBuscar = require('../services/solicitudesBuscarPendientes/network');
 //sucursales
 const sucursalesRegistro = require('../services/sucursalesRegistro/network');
@@ -17,6 +19,8 @@ const metasBuscar = require('../services/metasBuscar/network');
 const propuestasActualizar = require('../services/propuestasActualizar/network');
 const propuestasAprobarMes = require('../services/propuestasAprobarMes/network');
 const propuestasAprobarHoy = require('../services/propuestasAprobarHoy/network');
+const propuestasAprobarTodo = require('../services/propuestasAprobarTodo/network');
+const propuestasBuscarPorAsesor = require('../services/propuestasBuscarPorAsesor/network');
 //empleados
 const empleadosBuscar = require('../services/empleadosBuscar/network');
 //asesores
@@ -25,19 +29,19 @@ const asesoresBuscar = require('../services/asesoresBuscar/network');
 
 const routes = function (app){
   //Authentication
-  app.use('/api/auth/login', auth);
+  // app.use('/auth/sign-in', signIn);
   //Solicitudes
-  app.use('/api/solicitudes/buscar', solicitudesBuscar);
+  app.use('/solicitudes/buscar', solicitudesBuscar);
   //Sucursales
-  app.use('/api/sucursales/registrar', sucursalesRegistro);
-  app.use('/api/sucursales/modificar', sucursalesActualziar);
-  app.use('/api/sucursales/buscar', sucursalesConsulta);
-  app.use('/api/sucursales/borrar', sucursalesBorrar);
+  app.use('/sucursales/registrar', sucursalesRegistro);
+  app.use('/sucursales/modificar', sucursalesActualziar);
+  app.use('/sucursales/buscar', sucursalesConsulta);
+  app.use('/sucursales/borrar', sucursalesBorrar);
   //usuarios
-  app.use('/api/usuarios/registrar', usuariosRegistro);
-  app.use('/api/usuarios/modificar', usuariosActualizar);
-  app.use('/api/usuarios/buscar', usuariosConsulta);
-  app.use('/api/usuarios/borrar', usuariosBorrar);
+  app.use('/usuarios/registrar', usuariosRegistro);
+  app.use('/usuarios/modificar', usuariosActualizar);
+  app.use('/usuarios/buscar', usuariosConsulta);
+  app.use('/usuarios/borrar', usuariosBorrar);
   //metas
   app.use('/metas/modificar', metasActualizar);
   app.use('/metas/buscar', metasBuscar);
@@ -45,6 +49,8 @@ const routes = function (app){
   app.use('/propuestas/modificar', propuestasActualizar);
   app.use('/propuestas/aprobarMes', propuestasAprobarMes);
   app.use('/propuestas/aprobarHoy', propuestasAprobarHoy);
+  app.use('/propuestas/aprobarTodo', propuestasAprobarTodo);  
+  app.use('/propuestas/buscarPorAsesor', propuestasBuscarPorAsesor);
   //empleados
   app.use('/empleados/buscar', empleadosBuscar);
   //asesores

@@ -1,17 +1,17 @@
 const express = require('express');
-const EmpleadosBuscarService = require('./controller');
+const PropuestaBuscarPorAsesorService = require('./controller');
 const router = express.Router();
 const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
 
-const empleadosBuscarApi = new EmpleadosBuscarService();
+const PropuestaBuscarPorAsesorApi = new PropuestaBuscarPorAsesorService();
 
 
-router.post('/',  authMiddleware('update'), async (req, res, next) => {
-    const { body: meta } = req;
-    console.log(meta);
+router.post('/', authMiddleware('update'), async (req, res, next) => {
+    const { body: data } = req;
+
     try {
-        empleadosBuscarApi.buscar(meta)
+        PropuestaBuscarPorAsesorApi.consulta(query)
             .then((data) => {
                 response.success(req, res, data)
             })
@@ -21,8 +21,7 @@ router.post('/',  authMiddleware('update'), async (req, res, next) => {
             });
     } catch (error) {
         next(error);
-    }
-   
+    }   
 });
 
 module.exports = router;

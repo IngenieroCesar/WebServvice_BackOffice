@@ -1,27 +1,27 @@
 const express = require('express');
-const passport = require('passport');
-// const AsesoresBuscarService = require('./controller');
+const AsesoresBuscarService = require('./controller');
 const router = express.Router();
+const authMiddleware = require('../../utils/middleware/authentication');
+const response = require('../../utils/response');
 
-// const asesoresBuscarApi = new AsesoresBuscarService();
+const asesoresBuscarApi = new AsesoresBuscarService();
 
 
-router.post('/', async (req, res, next) => {
+router.post('/', authMiddleware('update'), async (req, res, next) => {
     const { body: meta } = req;
     console.log(meta);
     try {
-        // asesoresBuscarApi.buscar(meta)
-        //     .then((data) => {
-        //         res.status(200).json(data);
-        //     })
-        //     .catch((error) => {
-        //         res.status(error.status).json(error.data);
-        //     });
-        res.status(200);
+        asesoresBuscarApi.buscar(meta)
+            .then((data) => { 
+                response.success(req, res, data)
+            })
+            .catch((error) => {     
+                console.log(error)
+                response.error(req, res, error)
+            });
     } catch (error) {
         next(error);
-    }
-   
+    }   
 });
 
 module.exports = router;

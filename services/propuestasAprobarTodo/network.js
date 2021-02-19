@@ -1,17 +1,17 @@
 const express = require('express');
-const PropuestasActualizarService = require('./controller');
+const PropuestasAprobarTodoService = require('./controller');
 const router = express.Router();
 const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
 
-const propuestasActualizarApi = new PropuestasActualizarService();
+const propuestasAprobarTodoApi = new PropuestasAprobarTodoService();
 
 
-router.post('/', authMiddleware('update'), async (req, res, next) => {
+router.post('/',authMiddleware('update'), async (req, res, next) => {
     const { body: meta } = req;
     console.log(meta);
     try {
-        propuestasActualizarApi.actualizar(meta)
+        propuestasAprobarTodoApi.aprobarTodo(meta)
         .then((data) => { 
             response.success(req, res, data)
         })
