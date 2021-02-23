@@ -81,11 +81,11 @@ async function request(url, endPoint, method, data, requestType, callback){
               //call reRequest
               request(url, endPoint, method, data, requestType, callback)
 
-              console.log(exceptions['EBO002'].message);
+              console.log(exceptions['02SURO401-S00005'].message);
               callback(null, err.response);
             }else {
-              console.log(exceptions['EBO001'].message);
-              err.response.data = { codigo: '01AUT401-S01021', mensaje: 'No autorizado' }
+              console.log(exceptions['02SURO401-S00005'].message);
+              err.response.data = { codigo: exceptions['02SURO401-S00005'].codigo, mensaje: exceptions['02SURO401-S00005'].message }
               
               callback(null, err.response);
             }

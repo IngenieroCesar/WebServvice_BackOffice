@@ -1,6 +1,7 @@
 
 const express = require('express');
 const passport = require('passport');
+const response = require('../../utils/response');
 const SucursalesConsultaService = require('./controller');
 const router = express.Router();
 
@@ -11,11 +12,10 @@ router.post('/', async (req, res, next) => {
     try {
         sucursalesConsultaApi.consulta(query)
             .then((data) => {
-                res.status(200).json(data);
+                response.success(req, res, data)
             })
             .catch((error) => {
-                console.log('Imprimimos la respuesta de axios desde network: ', error);
-                res.status(error.status).json(error.data);
+                response.error(req, res, error)
                 // next(error);
             });
         

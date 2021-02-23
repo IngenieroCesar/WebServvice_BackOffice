@@ -7,8 +7,9 @@ const router = express.Router();
 const solicitudesBuscarApi = new solicitudesBuscarService()
 
 
-router.post('/',  async (req, res) => { 
-    const solicitudBuscar = await solicitudesBuscarApi.getSolicitudBuscar();    
+router.post('/', async (req, res) => { 
+
+    const solicitudBuscar = await solicitudesBuscarApi.getSolicitudBuscar();
     console.log(solicitudBuscar)
     res.status(200).json(solicitudBuscar.data);
 

@@ -19,7 +19,7 @@ class SolicitudesBuscarService {
                 }
 
                 // get data user from store
-                axiosUtil.request(config.urlDao, '/solicitudes/buscar', 'post', null, object,'Sin mensaje', async ( data, error ) => {
+                axiosUtil.request(config.urlDao, '/solicitudes/buscar', 'post', object, 'read', async ( data, error ) => {
                     if (error === null && data) {
                         resolve({ data, error: null })
                     }   else if (error == null) {
