@@ -1,5 +1,6 @@
 const axiosUtil = require('../../utils/request/axios');
 const config = require('../../config');
+const exeptions = require('../../utils/exceptions');
 
 class SolicitudesBuscarService {
     constructor() {
@@ -21,14 +22,21 @@ class SolicitudesBuscarService {
                 // get data user from store
                 axiosUtil.request(config.urlDao, '/solicitudes/buscar', 'post', object, 'read', async ( data, error ) => {
                     if (error === null && data) {
-                        resolve({ data, error: null })
-                    }   else if (error == null) {
-                        //algo
-                        reject({ data: null, error })
-                        }   else {
-                            //Not auth
-                            reject({ data: null, error })
-                            }
+                        resolve({
+                            data: data,
+                            status: exeptions['02SURO200-S00002'].status,
+                            codigo: exeptions['02SURO200-S00002'].code,
+                            mensaje: exeptions['02SURO200-S00002'].message
+                        });
+                    }else {
+                        //El usuario no esta autorizado
+                        reject({
+                            data: {},
+                            status: exeptions['02SURO401-S00003'].status,
+                            codigo: exeptions['02SURO401-S00003'].code,
+                            mensaje: exeptions['02SURO401-S00003'].message
+                        });
+                    }
                 });
             });
 

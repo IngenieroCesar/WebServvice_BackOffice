@@ -31,7 +31,7 @@ const routes = function (app){
   //Authentication
   app.use('/api/auth/login', auth);
   //Solicitudes
-  app.use('/solicitudes/buscar', solicitudesBuscar);
+  app.use('/api/solicitudes/buscar', solicitudesBuscar);
   //Sucursales
   app.use('/api/sucursales/registrar', sucursalesRegistro);
   app.use('/api/sucursales/modificar', sucursalesActualziar);

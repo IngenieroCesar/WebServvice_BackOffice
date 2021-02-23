@@ -1,18 +1,26 @@
 
 const express = require('express');
-const passport = require('passport');
+const response = require('../../utils/response');
 const solicitudesBuscarService = require('./controller');
 const router = express.Router();
 
 const solicitudesBuscarApi = new solicitudesBuscarService()
 
 
-router.post('/', async (req, res) => { 
+router.post('/', async (req, res) => {
 
-    const solicitudBuscar = await solicitudesBuscarApi.getSolicitudBuscar();
-    console.log(solicitudBuscar)
-    res.status(200).json(solicitudBuscar.data);
-
+    try {
+        solicitudesBuscarApi.getSolicitudBuscar()
+            .then((data) => {
+                response.success(req, res, data);
+            })
+            .catch((error) => {
+                response.error(req, res, error);
+                // next(error);
+            });
+    } catch (error) {
+        next(error);
+    }
 
 });
 
