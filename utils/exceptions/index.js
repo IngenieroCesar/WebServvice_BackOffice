@@ -36,14 +36,20 @@ module.exports = {
         'message': "No autorizado."
     },
 
+    '02SURO400-S00006': {
+        'code': '02SURO400-S00006',
+        'status': 400,
+        'message': "No se encuentra la sucursal."
+    },
+
     //usuarios consulta
-    '02USCO400-S00006': {
+    '02USCO400-S00001': {
         'code': '02USCO400-S00006',
         'status': 400,
         'message': "Problema al consultar suarios."
     },
 
-    '02USCO400-S00007': {
+    '02USCO400-S00001': {
         'code': '02USCO400-S00007',
         'status': 400,
         'message': "Problema al borrar suarios."

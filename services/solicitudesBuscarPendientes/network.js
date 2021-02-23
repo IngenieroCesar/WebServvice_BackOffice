@@ -7,10 +7,9 @@ const router = express.Router();
 const solicitudesBuscarApi = new solicitudesBuscarService()
 
 
-router.post('/', passport.authenticate('jwt', { session: false }), async (req, res) => { 
+router.post('/', async (req, res) => { 
 
-    // const solicitudBuscar = await solicitudesBuscarApi.getSolicitudBuscar();
-    const solicitudBuscar = { data: 'hola'};
+    const solicitudBuscar = await solicitudesBuscarApi.getSolicitudBuscar();
     console.log(solicitudBuscar)
     res.status(200).json(solicitudBuscar.data);
 
