@@ -10,6 +10,10 @@ function sign(data) {
     return jwt.sign(data, secret, { expiresIn: '8h' });
 }
 
+function decodedToken (token) {
+    return jwt.decode(token);
+}
+
 function getToken(auth) {
     if(!auth){
         throw new Error('No viene token');
@@ -50,10 +54,10 @@ async function check(req){
           });
     });
 
-
 }
 
 module.exports = {
     sign,
     check,
+    decodedToken
 }

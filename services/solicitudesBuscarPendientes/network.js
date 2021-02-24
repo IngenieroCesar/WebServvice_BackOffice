@@ -1,13 +1,13 @@
 
 const express = require('express');
-const response = require('../../utils/response');
+const passport = require('passport');
 const solicitudesBuscarService = require('./controller');
 const router = express.Router();
 
 const solicitudesBuscarApi = new solicitudesBuscarService()
 
 
-router.post('/', async (req, res) => {
+router.post('/', async (req, res) => { 
 
     try {
         solicitudesBuscarApi.getSolicitudBuscar()
@@ -21,6 +21,7 @@ router.post('/', async (req, res) => {
     } catch (error) {
         next(error);
     }
+
 
 });
 
