@@ -1,28 +1,24 @@
 const express = require('express');
-const PropuestasAprobarHoyService = require('./controller');
+const SolicitudesAprobarTodoService = require('./controller');
 const router = express.Router();
 const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
-
-const propuestasAprobarHoyApi = new PropuestasAprobarHoyService();
+const solicitudesAprobarTodoApi = new SolicitudesAprobarTodoService();
 
 
 router.post('/',authMiddleware('update'), async (req, res, next) => {
-    const { body: meta } = req;
-    console.log(meta);
+    const { body: idSucursal } = req;    
     try {
-        propuestasAprobarHoyApi.aprobarHoy(meta)
+        solicitudesAprobarTodoApi.aprobarTodo(idSucursal)
         .then((data) => { 
             response.success(req, res, data)
         })
-        .catch((error) => {     
-            console.log(error)
+        .catch((error) => {
             response.error(req, res, error)
         });
     } catch (error) {
         next(error);
     }
-   
 });
 
 module.exports = router;

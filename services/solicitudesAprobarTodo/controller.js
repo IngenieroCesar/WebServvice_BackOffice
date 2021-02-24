@@ -2,15 +2,21 @@ const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
 const { config } = require('../../config');
 
-class PropuestasAprobarTodoService {
+class SolicitudesAprobarTodoService {
     constructor() {
-        this.collection = 'propuestas';
+        this.collection = 'solicitudes';
     }
 
-    async aprobarTodo( object ) {
+    async aprobarTodo( idSucursal ) {
         return new Promise((resolve, reject) => {
-            //approve proposals all
-            axiosUtil.request(config.urlDao, '/propuestas/aprobarTodo', 'post', object, 'write', async ( data, error ) => {
+            const object = {
+                "query" : {
+                    "sucursal._id" : idSucursal,
+                    "estado": 49
+                }
+            }
+            //search approve proposals all
+            axiosUtil.request(config.urlDao, '/solicitudes/buscar', 'post', object, 'read', async ( data, error ) => {
                 if (error === null && data) {
                     resolve({
                         data: data.data,
@@ -19,7 +25,7 @@ class PropuestasAprobarTodoService {
                         mensaje: exceptions['02PRAT200-S000020'].message
                     });
                 } else {
-                      //Error al aprobar todas las propuestas 
+                      //Error al buscar solicitudes de aprobar todas las propuestas 
                       reject({
                         data: {},
                         status: exceptions['02PRAT400-S000021'].status,
@@ -34,4 +40,4 @@ class PropuestasAprobarTodoService {
 
 }
 
-module.exports = PropuestasAprobarTodoService;
+module.exports = SolicitudesAprobarTodoService;

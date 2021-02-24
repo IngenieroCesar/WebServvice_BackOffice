@@ -1,31 +1,25 @@
-
 const express = require('express');
-const passport = require('passport');
-const PropuestasAprobarMesService = require('./controller');
+const SolicitudesAprobarHoyService = require('./controller');
 const router = express.Router();
 const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
 
-
-const propuestasAprobarMesApi = new PropuestasAprobarMesService();
+const solicitudesAprobarHoyApi = new SolicitudesAprobarHoyService();
 
 
 router.post('/',authMiddleware('update'), async (req, res, next) => {
-    const { body: meta } = req;
-    console.log(meta);
+    const { body: idSucursal } = req;    
     try {
-        propuestasAprobarMesApi.aprobarMes(meta)
-        .then((data) => {
+        solicitudesAprobarHoyApi.aprobarHoy(idSucursal)
+        .then((data) => { 
             response.success(req, res, data)
         })
         .catch((error) => {
-            console.log(error)
             response.error(req, res, error)
         });
     } catch (error) {
         next(error);
     }
-   
 });
 
 module.exports = router;

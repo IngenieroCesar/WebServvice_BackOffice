@@ -17,9 +17,9 @@ const metasActualizar = require('../services/metasActualizar/network');
 const metasBuscar = require('../services/metasBuscar/network');
 //propuestas
 const propuestasActualizar = require('../services/propuestasActualizar/network');
-const propuestasAprobarMes = require('../services/propuestasAprobarMes/network');
-const propuestasAprobarHoy = require('../services/propuestasAprobarHoy/network');
-const propuestasAprobarTodo = require('../services/propuestasAprobarTodo/network');
+const solicitudesAprobarMes = require('../services/solicitudesAprobarMes/network');
+const solicitudesAprobarHoy = require('../services/solicitudesAprobarHoy/network');
+const solicitudesAprobarTodo = require('../services/solicitudesAprobarTodo/network');
 const propuestasBuscarPorAsesor = require('../services/propuestasBuscarPorAsesor/network');
 //empleados
 const empleadosBuscar = require('../services/empleadosBuscar/network');
@@ -47,9 +47,9 @@ const routes = function (app){
   app.use('/api/metas/buscar', metasBuscar);
   //propuestas
   app.use('/api/propuestas/modificar', propuestasActualizar);
-  app.use('/api/propuestas/aprobarMes', propuestasAprobarMes);
-  app.use('/api/propuestas/aprobarHoy', propuestasAprobarHoy);
-  app.use('/api/propuestas/aprobarTodo', propuestasAprobarTodo);  
+  app.use('/api/solicitudes/aprobarMes', solicitudesAprobarMes);
+  app.use('/api/solicitudes/aprobarHoy', solicitudesAprobarHoy);
+  app.use('/api/solicitudes/aprobarTodo', solicitudesAprobarTodo);  
   app.use('/api/propuestas/buscarPorAsesor', propuestasBuscarPorAsesor);
   //empleados
   app.use('/api/empleados/buscar', empleadosBuscar);
