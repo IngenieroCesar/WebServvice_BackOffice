@@ -39,10 +39,10 @@ const routes = function (app){
   app.use('/api/usuarios/buscar', usuariosConsulta);
   app.use('/api/usuarios/borrar', usuariosBorrar);
   //metas
-  app.use('/metas/modificar', metasActualizar);
-  app.use('/metas/buscar', metasBuscar);
+  app.use('/api/metas/modificar', metasActualizar);
+  app.use('/api/metas/buscar', metasBuscar);
   //propuestas
-  app.use('/propuestas/modificar', propuestasActualizar);
+  app.use('/api/propuestas/modificar', propuestasActualizar);
   app.use('/propuestas/aprobarMes', propuestasAprobarMes);
   app.use('/propuestas/aprobarHoy', propuestasAprobarHoy);
   //empleados
