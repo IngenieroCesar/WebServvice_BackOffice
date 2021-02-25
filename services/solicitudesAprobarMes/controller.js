@@ -1,22 +1,29 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
-const { config } = require('../../config');
+const config = require('../../config');
+const moment = require('moment');
 
 class SolicitudesAprobarMesService {
     constructor() {
         this.collection = 'solicitudes';
     }
 
-    async aprobarMes( idSucursal ) {
+    async aprobarMes(userData) {
         return new Promise((resolve, reject) => {
             const object = {
                 "query" : {
-                    "sucursal._id" : idSucursal
+                    "sucursal._id" : userData.sucursal._id,
+                    "createdAt" : {
+                        "$gte": moment().startOf('month'),
+                        "$lte": moment().endOf('month')
+                    },
+                    "estado": 49
                 }
             }
             //Buscar solicitudes de propuestas aprobadas por mes
             axiosUtil.request(config.urlDao, '/solicitudes/buscar', 'post', object, 'read', async ( data, error ) => {
                 if (error === null && data) {
+                    console.log(data)
                     resolve({
                         data: data,
                         status: exceptions['02PRAM200-S000016'].status,

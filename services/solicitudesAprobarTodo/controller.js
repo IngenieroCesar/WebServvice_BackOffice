@@ -1,17 +1,18 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
-const { config } = require('../../config');
+const config = require('../../config');
+const moment = require('moment');
 
 class SolicitudesAprobarTodoService {
     constructor() {
         this.collection = 'solicitudes';
     }
 
-    async aprobarTodo( idSucursal ) {
+    async aprobarTodo(userData) {
         return new Promise((resolve, reject) => {
             const object = {
                 "query" : {
-                    "sucursal._id" : idSucursal,
+                    "sucursal._id" : userData.sucursal._id,                    
                     "estado": 49
                 }
             }

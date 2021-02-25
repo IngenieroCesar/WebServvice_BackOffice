@@ -8,9 +8,7 @@ class SolicitudesBuscarService {
     }
 
     async getSolicitudBuscar(  ) {
-
             return new Promise((resolve, reject) => {
-
                 const object = {
                     "query" : {
                         "fechaRegistro.formato" : {
@@ -39,9 +37,7 @@ class SolicitudesBuscarService {
                     }
                 });
             });
-
     }
-
 }
 
 module.exports = SolicitudesBuscarService;
