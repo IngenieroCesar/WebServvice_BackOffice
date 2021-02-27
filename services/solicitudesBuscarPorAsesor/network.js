@@ -1,22 +1,23 @@
+const SolicitudesBuscarPorAsesorService = require('./controller');
 const express = require('express');
-const PropuestaBuscarPorAsesorService = require('./controller');
 const router = express.Router();
 const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
+const decodeToken = require('../../utils/auth/index').decodedToken;
 
-const PropuestaBuscarPorAsesorApi = new PropuestaBuscarPorAsesorService();
+const SolicitudesBuscarPorAsesorApi = new SolicitudesBuscarPorAsesorService();
 
 
 router.post('/', authMiddleware('update'), async (req, res, next) => {
-    const { body: data } = req;
-
+    const token = req.headers['authorization'];
+    const userData = decodeToken(token.replace('Bearer ', '')); 
+    
     try {
-        PropuestaBuscarPorAsesorApi.consulta(query)
+        SolicitudesBuscarPorAsesorApi.buscarPorAsesor(userData)
             .then((data) => {
                 response.success(req, res, data)
             })
-            .catch((error) => {
-                console.log(error)
+            .catch((error) => {                
                 response.error(req, res, error)
             });
     } catch (error) {

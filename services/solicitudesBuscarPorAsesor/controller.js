@@ -1,19 +1,22 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
-const config = require('../../config');
+const config  = require('../../config');
 
-
-class PropuestaBuscarPorAsesorService {
+class SolicitudesBuscarPorAsesorService {
     constructor() {
-        this.collection = 'propuestas';
+        this.collection = 'solicitudes';
     }
 
-    async buscarPorAsesor( object ) {
-
+    async buscarPorAsesor( userData ) {        
         return new Promise((resolve, reject) => {
-
+            const object = {
+                "query" : {
+                    "_id" : userData._id,                  
+                    "estado": 49
+                }
+            }
             //get data proposals by advicers from store
-            axiosUtil.request(config.urlDao, '/propuestas/buscarPorAsesor', 'post', object, 'read', async ( data, error ) => {
+            axiosUtil.request(config.urlDao, '/solicitudes/buscar', 'post', object, 'read', async ( data, error ) => {
                 if (error === null && data) {
                     resolve({
                         data: data.data,
@@ -32,9 +35,8 @@ class PropuestaBuscarPorAsesorService {
                 }
             });
         });
-        
     }
 
 }
 
-module.exports = PropuestaBuscarPorAsesorService;
+module.exports = SolicitudesBuscarPorAsesorService;

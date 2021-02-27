@@ -15,8 +15,7 @@ router.post('/',authMiddleware('update'), async (req, res, next) => {
         .then((data) => {
             response.success(req, res, data)
         })
-        .catch((error) => {    
-            console.log(error);        
+        .catch((error) => { 
             response.error(req, res, error)
         });
     } catch (error) {

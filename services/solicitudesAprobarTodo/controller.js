@@ -1,7 +1,6 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
 const config = require('../../config');
-const moment = require('moment');
 
 class SolicitudesAprobarTodoService {
     constructor() {
@@ -36,9 +35,7 @@ class SolicitudesAprobarTodoService {
                 }
             });
         });
-
     }
-
 }
 
 module.exports = SolicitudesAprobarTodoService;

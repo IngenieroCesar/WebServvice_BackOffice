@@ -1,17 +1,23 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
-const { config } = require('../../config');
+const config = require('../../config');
 
 class AsesoresBuscarService {
     constructor() {
         this.collection = 'asesores';
     }
 
-    async buscar( object ) {
-
+    async buscar( userData ) {    
         return new Promise((resolve, reject) => {
-            //get data advisers from store
-            axiosUtil.request(config.urlDao, '/asesores/buscar', 'post', object, 'read', async ( data, error ) => {
+            const object = {
+                "query" : {
+                    "sucursal._id" : userData.sucursal._id, 
+                    "rol.rol": "Asesor",
+                    "estado": 1
+                }
+            }
+            //get data advisers from store            
+            axiosUtil.request(config.urlDao, '/usuarios/buscar', 'post', object, 'read', async ( data, error ) => {
                 if (error === null && data) {
                     resolve({
                         data: data.data,
@@ -30,9 +36,7 @@ class AsesoresBuscarService {
                 }            
             });
         });
-
     }
-
 }
 
 module.exports = AsesoresBuscarService;

@@ -7,7 +7,6 @@ const decodeToken = require('../../utils/auth/index').decodedToken;
 
 const solicitudesAprobarHoyApi = new SolicitudesAprobarHoyService();
 
-
 router.post('/',authMiddleware('update'), async (req, res, next) => {
     const token = req.headers['authorization'];
     const userData = decodeToken(token.replace('Bearer ', ''));    

@@ -1,16 +1,22 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
-const { config } = require('../../config');
+const config = require('../../config');
 
 class EmpleadosBuscarService {
     constructor() {
         this.collection = 'empleados';
     }
 
-    async buscar( object ) {
+    async buscar(userData) {
         return new Promise((resolve, reject) => {
+            const object = {
+                "query" : {
+                    "sucursal._id" : userData.sucursal._id, 
+                    "estado": 1
+                }
+            }            
             //get data employees from store
-            axiosUtil.request(config.urlDao, '/empleados/buscar', 'post', object, 'read', async ( data, error ) => {
+            axiosUtil.request(config.urlDao, '/usuarios/buscar', 'post', object, 'read', async ( data, error ) => {
                 if (error === null && data) {
                     resolve({
                         data: data.data,
@@ -19,7 +25,7 @@ class EmpleadosBuscarService {
                         mensaje: exceptions['02EMPBU200-S000010'].message
                     });
                 }  else {
-                      //Problema al consultar usuarios
+                      //Problema al consultar empleados
                       reject({
                         data: {},
                         status: exceptions['02EMPBU400-S000011'].status,

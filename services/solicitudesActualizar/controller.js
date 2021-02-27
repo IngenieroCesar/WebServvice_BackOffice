@@ -1,16 +1,22 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
-const { config } = require('../../config');
+const config  = require('../../config');
 
-class PropuestasActualizarService {
+class SolicitudesActualizarService {
     constructor() {
         this.collection = 'propuestas';
     }
 
-    async actualizar( object ) {
+    async actualizar(dataUser) {
         return new Promise((resolve, reject) => {
+            const object = {
+                "query" : {
+                    "sucursal._id" : userData.sucursal._id,                    
+                    "estado": 49
+                }
+            }
             //get data proposals from store
-            axiosUtil.request(config.urlDao, '/propuestas/modificar', 'post', object, 'write', async ( data, error ) => {
+            axiosUtil.request(config.urlDao, '/solicitudes/modificar', 'post', object, 'write', async ( data, error ) => {
                 if (error === null && data) {
                     resolve({
                         data: data.data,
@@ -32,4 +38,4 @@ class PropuestasActualizarService {
 
 }
 
-module.exports = PropuestasActualizarService;
+module.exports = SolicitudesActualizarService;
