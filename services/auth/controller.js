@@ -2,6 +2,7 @@ const axiosUtil = require('../../utils/request/axios');
 const auth = require('../../utils/auth');
 const exeptions = require('../../utils/exceptions');
 const config = require('../../config');
+const moment = require('moment');
 
 class UsuariosConsultaService {
     constructor() {
@@ -13,12 +14,12 @@ class UsuariosConsultaService {
 
             //get data users from store
             axiosUtil.request(config.urlDao, '/usuarios/buscar', 'post', object, 'read', async ( data, error ) => {
-                if (error === null && data) {
+                if (error === null && data) {   
                     if(data.data[0]){
                         //El usuario existe en base de datos y devemos retornar el token
                         let token = await auth.sign(data.data[0]);
                         resolve({
-                            data: { token: token },
+                            data: { token: token, nombre: data.data[0].nombre, apellido: data.data[0].apellido, ultimaConexion: moment().startOf('day') },
                             status: exeptions['02SURO200-S00002'].status,
                             codigo: exeptions['02SURO200-S00002'].code,
                             mensaje: exeptions['02SURO200-S00002'].message

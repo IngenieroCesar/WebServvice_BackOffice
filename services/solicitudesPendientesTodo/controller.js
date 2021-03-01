@@ -2,12 +2,12 @@ const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
 const config = require('../../config');
 
-class SolicitudesAprobarTodoService {
+class SolicitudesPendientesTodoService {
     constructor() {
         this.collection = 'solicitudes';
     }
 
-    async aprobarTodo(userData) {
+    async pendientesTodo(userData) {
         return new Promise((resolve, reject) => {
             const object = {
                 "query" : {
@@ -38,4 +38,4 @@ class SolicitudesAprobarTodoService {
     }
 }
 
-module.exports = SolicitudesAprobarTodoService;
+module.exports = SolicitudesPendientesTodoService;

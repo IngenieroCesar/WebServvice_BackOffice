@@ -1,14 +1,14 @@
 const axiosUtil = require('../../utils/request/axios');
 const exceptions = require('../../utils/exceptions');
-const config  = require('../../config');
+const config = require('../../config');
 const moment = require('moment');
 
-class SolicitudesAprobarHoyService {
+class SolicitudesPendientesHoyService {
     constructor() {
         this.collection = 'solicitudes';
     }
 
-    async aprobarHoy(userData) {
+    async pendientesHoy(userData) {
         return new Promise((resolve, reject) => {
             const object = {
                 "query" : {
@@ -20,10 +20,9 @@ class SolicitudesAprobarHoyService {
                     "estado": 49
                 }
             }
-            //Buscar propuestas aprobadas de hoy.
+            //Buscar propuestas aprobadas de hoy.<
             axiosUtil.request(config.urlDao, '/solicitudes/buscar', 'post', object, 'read', async ( data, error ) => {
-                if (error === null && data) {
-                    console.log(data);
+                if (error === null && data) {                   
                     resolve({
                         data: data,
                         status: exceptions['02PRAH200-S000014'].status,
@@ -44,4 +43,4 @@ class SolicitudesAprobarHoyService {
     }
 }
 
-module.exports = SolicitudesAprobarHoyService;
+module.exports = SolicitudesPendientesHoyService;

@@ -1,21 +1,22 @@
-const SolicitudesAprobarMesService = require('./controller');
+const SolicitudesPendientesTodoService = require('./controller');
 const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
 const decodeToken = require('../../utils/auth/index').decodedToken;
 
-const solicitudesAprobarMesApi = new SolicitudesAprobarMesService();
+const solicitudesPendientesTodoApi = new SolicitudesPendientesTodoService();
+
 
 router.post('/',authMiddleware('update'), async (req, res, next) => {
     const token = req.headers['authorization'];
-    const userData = decodeToken(token.replace('Bearer ', ''));
+    const userData = decodeToken(token.replace('Bearer ', ''));   
     try {
-        solicitudesAprobarMesApi.aprobarMes(userData)
-        .then((data) => {
+        solicitudesPendientesTodoApi.pendientesTodo(userData)
+        .then((data) => { 
             response.success(req, res, data)
         })
-        .catch((error) => { 
+        .catch((error) => {
             response.error(req, res, error)
         });
     } catch (error) {

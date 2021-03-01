@@ -12,9 +12,10 @@ class AsesoresBuscarService {
             const object = {
                 "query" : {
                     "sucursal._id" : userData.sucursal._id, 
-                    "rol.rol": "Asesor",
+                    "rol.id": 1,
                     "estado": 1
-                }
+                },
+                "fields" : ["cedula", "nombre", "apellido", "_id", "_rev"]
             }
             //get data advisers from store            
             axiosUtil.request(config.urlDao, '/usuarios/buscar', 'post', object, 'read', async ( data, error ) => {

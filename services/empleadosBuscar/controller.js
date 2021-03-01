@@ -13,7 +13,8 @@ class EmpleadosBuscarService {
                 "query" : {
                     "sucursal._id" : userData.sucursal._id, 
                     "estado": 1
-                }
+                },
+                "fields" : ["cedula", "nombre", "apellido", "_id", "_rev"]
             }            
             //get data employees from store
             axiosUtil.request(config.urlDao, '/usuarios/buscar', 'post', object, 'read', async ( data, error ) => {
