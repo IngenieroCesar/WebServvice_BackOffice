@@ -1,9 +1,9 @@
 
-const express = require('express');
-const passport = require('passport');
-const response = require('../../utils/response');
 const SucursalesConsultaService = require('./controller');
+const express = require('express');
 const router = express.Router();
+const authMiddleware = require('../../utils/middleware/authentication');
+const response = require('../../utils/response');
 
 const sucursalesConsultaApi = new SucursalesConsultaService();
 
@@ -15,15 +15,12 @@ router.post('/', async (req, res, next) => {
                 response.success(req, res, data)
             })
             .catch((error) => {
-                response.error(req, res, error)
-                // next(error);
+                response.error(req, res, error)         
             });
         
     } catch (error) {
         next(error);
     }
-   
-
 });
 
 module.exports = router;

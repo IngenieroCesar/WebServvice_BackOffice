@@ -24,8 +24,7 @@ router.post('/', validationHandler(deleteSucursalSchema), async (req, res, next)
                 response.success(req, res, data);
             })
             .catch((error) => {
-                response.error(req, res, error);
-                // next(error);
+                response.error(req, res, error);                
             });
     } catch (error) {
         next(error);

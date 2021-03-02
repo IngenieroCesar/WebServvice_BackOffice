@@ -15,7 +15,7 @@ const usuariosBorrar = require('../services/usuariosBorrar/network');
 //metas
 const metasActualizar = require('../services/metasActualizar/network');
 const metasBuscar = require('../services/metasBuscar/network');
-//prupuestas (solicitudes)
+//propuestas (solicitudes)
 const solicitudesActualizar = require('../services/solicitudesActualizar/network');
 const solicitudesPendientesHoy = require('../services/solicitudesPendientesHoy/network');
 const solicitudesPendientesMes = require('../services/solicitudesPendientesMes/network');
@@ -47,9 +47,9 @@ const routes = function (app){
   app.use('/api/metas/buscar', metasBuscar);
   //solicitudes (propuestas)
   app.use('/api/solicitudes/modificar', solicitudesActualizar);
-  app.use('/api/solicitudes/PendientesHoy', solicitudesPendientesHoy);
-  app.use('/api/solicitudes/PendientesMes', solicitudesPendientesMes);
-  app.use('/api/solicitudes/PendientesTodo', solicitudesPendientesTodo);  
+  app.use('/api/solicitudes/pendientesHoy', solicitudesPendientesHoy);
+  app.use('/api/solicitudes/pendientesMes', solicitudesPendientesMes);
+  app.use('/api/solicitudes/pendientesTodo', solicitudesPendientesTodo);  
   app.use('/api/solicitudes/buscarPorAsesor', solicitudesBuscarPorAsesor);
   //empleados
   app.use('/api/empleados/buscar', empleadosBuscar);

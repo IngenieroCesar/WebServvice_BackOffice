@@ -46,13 +46,13 @@ module.exports = {
     '02USCO400-S00001': {
         'code': '02USCO400-S00006',
         'status': 400,
-        'message': "Problema al consultar suarios."
+        'message': "Problema al consultar usuarios."
     },
 
     '02USCO400-S00001': {
         'code': '02USCO400-S00007',
         'status': 400,
-        'message': "Problema al borrar suarios."
+        'message': "Problema al borrar usuarios."
     },
 
     // asesores
@@ -143,6 +143,19 @@ module.exports = {
         'code': '02PRAT400-S000021',
         'status': 400,
         'message': "Error al aprobar todas las propuestas"
+    },
+
+     // Consultar sucursales
+     '02SUCBU200-S000022': {
+        'code': '02SUCBU200-S000022',
+        'status': 200,
+        'message': "Proceso Correcto."
+    },
+
+    '02SUCBU400-S000023': {
+        'code': '02SUCBU400-S000023',
+        'status': 400,
+        'message': "Error al consultar las sucursales"
     }
 
 }

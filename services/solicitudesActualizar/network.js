@@ -1,18 +1,16 @@
-const express = require('express');
 const SolicitudesActualizarService = require('./controller');
+const express = require('express');
 const router = express.Router();
 const authMiddleware = require('../../utils/middleware/authentication');
 const response = require('../../utils/response');
-const decodeToken = require('../../utils/auth/index').decodedToken;
 
 const solicitudesActualizarApi = new SolicitudesActualizarService();
 
-
-router.post('/', authMiddleware('update'), async (req, res, next) => {
-    const token = req.headers['authorization'];
-    const userData = decodeToken(token.replace('Bearer ', ''));  
+router.post('/',authMiddleware('update'), async (req, res, next) => {
+    const { body: query } = req;
     try {
-        solicitudesActualizarApi.actualizar(userData)
+       
+        solicitudesActualizarApi.actualizar(query)
         .then((data) => { 
             response.success(req, res, data)
         })
@@ -21,7 +19,7 @@ router.post('/', authMiddleware('update'), async (req, res, next) => {
         });
     } catch (error) {
         next(error);
-    }   
+    }
 });
 
 module.exports = router;

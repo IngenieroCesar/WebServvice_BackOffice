@@ -7,14 +7,19 @@ class SolicitudesActualizarService {
         this.collection = 'propuestas';
     }
 
-    async actualizar(dataUser) {
-        return new Promise((resolve, reject) => {
+    async actualizar(query) {          
+        return new Promise((resolve, reject) => {  
             const object = {
                 "query" : {
-                    "sucursal._id" : userData.sucursal._id,                    
-                    "estado": 49
+                    "_id" : query._id,                  
+                    "estado": query.estado,
+                    "mensajes":  {
+                        "motivo": query.mensajes[0].motivo
+                    }
                 }
             }
+            console.log(object) 
+
             //get data proposals from store
             axiosUtil.request(config.urlDao, '/solicitudes/modificar', 'post', object, 'write', async ( data, error ) => {
                 if (error === null && data) {
@@ -25,7 +30,7 @@ class SolicitudesActualizarService {
                         mensaje: exceptions['02PRAC200-S000012'].message
                     });
                 } else {
-                    exceptionsreject({
+                    reject({
                         data: {},
                         status: exceptions['02PRAC400-S000013'].status,
                         codigo: exceptions['02PRAC400-S000013'].code,

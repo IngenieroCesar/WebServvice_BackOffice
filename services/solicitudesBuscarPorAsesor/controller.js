@@ -7,8 +7,7 @@ class SolicitudesBuscarPorAsesorService {
         this.collection = 'solicitudes';
     }
 
-    async buscarPorAsesor( userData ) {    
-        console.log(userData)   
+    async buscarPorAsesor( userData ) {         
         return new Promise((resolve, reject) => {
             const object = {
                 "query" : {
