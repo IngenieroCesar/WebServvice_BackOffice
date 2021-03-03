@@ -1,15 +1,13 @@
-
 const express = require('express');
-const passport = require('passport');
 const MetasActualizarService = require('./controller');
+const authMiddleware = require('../../utils/middleware/authentication');
 const router = express.Router();
 
 const metasActualizarApi = new MetasActualizarService();
 
 
-router.post('/', async (req, res, next) => {
-    const { body: meta } = req;
-    console.log(meta);
+router.post('/', authMiddleware('update'), async (req, res, next) => {
+    const { body: meta } = req;    
     try {
         metasActualizarApi.actualizar(meta)
             .then((data) => {

@@ -18,8 +18,9 @@ class UsuariosConsultaService {
                     if(data.data[0]){
                         //El usuario existe en base de datos y devemos retornar el token
                         let token = await auth.sign(data.data[0]);
+                        
                         resolve({
-                            data: { token: token, nombre: data.data[0].nombre, apellido: data.data[0].apellido, ultimaConexion: moment().startOf('day') },
+                            data: { token: token, nombre: data.data[0].nombre, apellido: data.data[0].apellido, ultimaConexion: moment().startOf('day'), roles: data.data[0].rol },
                             status: exeptions['02SURO200-S00002'].status,
                             codigo: exeptions['02SURO200-S00002'].code,
                             mensaje: exeptions['02SURO200-S00002'].message

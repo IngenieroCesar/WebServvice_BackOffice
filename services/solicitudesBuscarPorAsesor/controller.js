@@ -11,8 +11,7 @@ class SolicitudesBuscarPorAsesorService {
         return new Promise((resolve, reject) => {
             const object = {
                 "query" : {
-                    "usuarioRegistra._id" : userData._id,                  
-                    "estado": 49
+                    "usuarioRegistra._id" : userData._id                    
                 }
             }
             //get data proposals by advicers from store
